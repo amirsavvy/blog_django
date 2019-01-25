@@ -26,3 +26,14 @@ urlpatterns = [
     url(r'accounts/login/$', auth_views.LoginView.as_view(template_name='blog/base.html'), name='login'),
     url(r'accounts/logout/$', auth_views.LogoutView.as_view(template_name='blog/base.html'), name='logout', kwargs={'next_page':'/'}),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns = [
+    url(r'^__debug__/', include(debug_toolbar.urls))
+    ] + urlpatterns
+
+
